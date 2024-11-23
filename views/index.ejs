@@ -1,0 +1,50 @@
+<!-- index.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Pasien Rumah Sakit</title>
+    <link rel="stylesheet" href="/styles/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>Data Pasien Rumah Sakit</header>
+
+        <!-- Form tambah pasien -->
+        <h3>Tambah Pasien Baru</h3>
+        <form action="/add" method="POST">
+            <input type="text" name="name" placeholder="Nama Pasien" required>
+            <input type="number" name="age" placeholder="Usia Pasien" required>
+            <input type="text" name="disease" placeholder="Penyakit" required>
+            <button type="submit">Tambah Data</button>
+        </form>
+
+        <!-- Daftar pasien -->
+        <h3>Daftar Pasien</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nama Pasien</th>
+                    <th>Usia</th>
+                    <th>Penyakit</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% data.forEach(function(patient) { %>
+                    <tr>
+                        <td><%= patient.name %></td>
+                        <td><%= patient.age %></td>
+                        <td><%= patient.disease %></td>
+                        <td>
+                            <a href="/edit/<%= patient.id %>">Edit</a> | 
+                            <a href="/delete/<%= patient.id %>">Hapus</a>
+                        </td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
